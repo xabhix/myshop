@@ -123,7 +123,7 @@
 
    
       <div class="col-md-3 mt-3 col-6-12">
-        
+         
         <div class="card"  style="background-color: white">
          <a href="{{url('cartitem/'.$item['id']. '/' .$item['item'])}}" target="_blank"   data-toggle="popover" data-trigger="hover"><img class="card-img-top" src="{{asset('image/'.$item['image'])}}" alt="Card image" width="100%"></a>
             <div class="card-body text-center">
