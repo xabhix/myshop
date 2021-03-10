@@ -36,13 +36,27 @@
     <meta name="theme-color" content="#ffffff">
     <!-- Main styles for this application-->
     <link href="{{asset('assets/css/style.css')}}" rel="stylesheet">
-    <!--for shop item -->
-    
+    <link href="{{asset('assets/css/select2.min.css')}}" rel="stylesheet" />
+    <!-------script of order form-------------------------->
     @yield('cssforitem')
+    @yield('scriptfororderform')
+    <!--for shop item -->
+    {{-- @if(!Auth::user()) --}}
+      @yield('cssforitem')
     
-    @yield('script')
-
-
+      @yield('script')
+    {{-- @endif --}}
+    <script type="text/javascript" src="{{asset('assets/js/jquery.js')}}"></script>
+    {{-- <script type="text/javascript" src="{{asset('assets/js/addcart.js')}}"></script> --}}
+    <script>
+      $(document).ready(function(){
+       
+         $('#addcart').text(JSON.parse(localStorage.getItem('items')).length);
+        
+      })
+         
+  
+    </script>
     <!-- Global site tag (gtag.js) - Google Analytics-->
     <script async src="{{asset('assets/js/sky.js')}}"></script>
 
@@ -51,7 +65,7 @@
     <link href="node_modules/@coreui/chartjs/dist/css/coreui-chartjs.css" rel="stylesheet">
   </head>
   <body class="c-app @yield('css')"> 
-
+    <div id="app">
     @if(Auth::user())
       <div class="c-sidebar c-sidebar-dark c-sidebar-fixed c-sidebar-lg-show" id="sidebar">
         <div class="c-sidebar-brand d-lg-down-none">
@@ -78,7 +92,7 @@
               {{-- <svg class="c-sidebar-nav-icon">
                 <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-speedometer"></use>
               </svg>  --}}
-           <a class="c-sidebar-nav-link" href="index.html">
+           <a class="c-sidebar-nav-link" href="{{url('/')}}">
               <svg class="c-sidebar-nav-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width="18" height="18"><path d="M10 20a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm-5.6-4.29a9.95 9.95 0 0 1 11.2 0 8 8 0 1 0-11.2 0zm6.12-7.64l3.02-3.02 1.41 1.41-3.02 3.02a2 2 0 1 1-1.41-1.41z"/></svg>
               <span class="c-sidebar-nav-icon"></span> Dashboard
             </a>
@@ -91,11 +105,7 @@
               {{-- <svg class="c-sidebar-nav-icon">
                 <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-drop"></use>
               </svg>--}} 
-              <li class="c-sidebar-nav-item">
-                <a class="c-sidebar-nav-link" href="/logout">
-                  
-                <svg class="c-sidebar-nav-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width="18" height="18"><path d="M20 10a10 10 0 1 1-20 0 10 10 0 0 1 20 0zm-2 0a8 8 0 1 0-16 0 8 8 0 0 0 16 0zm-8 2H5V8h5V5l5 5-5 5v-3z"/></svg>
-                <span class="c-sidebar-nav-icon"></span>Logout</a></li>
+              
             
               <li class="c-sidebar-nav-item">
               <a class="c-sidebar-nav-link" href="{{"/profile/edit/". Auth::user()->id}}">
@@ -103,7 +113,16 @@
                 <svg  class="c-sidebar-nav-icon" id="Solid" height="512" viewBox="0 0 512 512" width="18" height="18" xmlns="http://www.w3.org/2000/svg"><path d="m255.997 477.327 47.003-10.847-36.157-36.156z"/><path d="m246.722 446.363 7.777-33.7c.019-.083.047-.161.069-.242.037-.139.074-.278.118-.415s.088-.252.135-.376.088-.234.138-.349c.059-.137.124-.27.19-.4.049-.1.1-.195.151-.29.077-.14.159-.274.243-.408.054-.085.108-.169.165-.252.092-.134.189-.263.289-.39.061-.079.122-.157.186-.233.1-.123.213-.241.323-.357.045-.047.085-.1.131-.144l104.805-104.807c-29.258-60.181-83.362-96-145.442-96-45.522 0-87.578 19.485-118.421 54.865-31.062 35.633-48.565 85.3-49.536 140.291 18.364 9.261 93.769 44.844 167.957 44.844a298.024 298.024 0 0 0 30.722-1.637z"/><path d="m270.461 342.863h176v64h-176z" transform="matrix(.707 -.707 .707 .707 -160.078 363.266)"/><circle cx="216" cy="112" r="80"/><path d="m464 301.324a32 32 0 0 0 -54.627-22.624l45.254 45.254a31.785 31.785 0 0 0 9.373-22.63z"/></svg>
                 <span class="c-sidebar-nav-icon"></span>  Edit profile</a>
               </li>
-
+            @if(Auth::user()->role->role=="user")
+              <li class="c-sidebar-nav-item">
+                <a class="c-sidebar-nav-link" href="{{"/ordereditems".'/'. Auth::user()->id}}">
+                  
+                 
+                  <svg class="c-sidebar-nav-icon" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24"  width="24" height="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/></svg>
+                  <span class="c-sidebar-nav-icon"></span>My order</a>
+                
+              </li>
+            @endif 
 
 
               {{-- <svg class="c-sidebar-nav-icon"> --}}
@@ -112,7 +131,7 @@
               
             
 
-          
+        @if(Auth::user()->role->role!=="user")  
               <li class="c-sidebar-nav-item">
                 <a class="c-sidebar-nav-link" href="/profile/itemform">
                   
@@ -139,6 +158,39 @@
               <svg class="c-sidebar-nav-icon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg>
                 
               <span class="c-sidebar-nav-icon"></span> Add Item Category</a></li>
+
+
+
+              <li class="c-sidebar-nav-item">
+                <a class="c-sidebar-nav-link" href={{"/orderstatus"}}>
+                  
+                  <svg class="c-sidebar-nav-icon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 9h-4v4h-2v-4H9V9h4V5h2v4h4v2z"/></svg>
+                  
+                  <span class="c-sidebar-nav-icon"></span>Order Status</a>
+                
+              </li>
+
+        @endif
+        
+
+        <li class="c-sidebar-nav-item">
+          {{-- <a class="c-sidebar-nav-link" href="/logout">
+            
+          <svg class="c-sidebar-nav-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width="18" height="18"><path d="M20 10a10 10 0 1 1-20 0 10 10 0 0 1 20 0zm-2 0a8 8 0 1 0-16 0 8 8 0 0 0 16 0zm-8 2H5V8h5V5l5 5-5 5v-3z"/></svg>
+          <span class="c-sidebar-nav-icon"></span>Logout</a> --}}
+
+          <a class="dropdown-item c-sidebar-nav-link" href="{{ route('logout') }}"
+              onclick="event.preventDefault();
+              document.getElementById('logout-form').submit();">
+              <svg class="c-sidebar-nav-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width="18" height="18"><path d="M20 10a10 10 0 1 1-20 0 10 10 0 0 1 20 0zm-2 0a8 8 0 1 0-16 0 8 8 0 0 0 16 0zm-8 2H5V8h5V5l5 5-5 5v-3z"/></svg>
+              <span class="c-sidebar-nav-icon"></span>{{ __('Logout') }}
+          </a>
+
+          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display:none;">
+              @csrf
+          </form>
+        </li>
+
 
 
           {{-- <li class="c-sidebar-nav-title">Components</li>
@@ -238,7 +290,11 @@
                 <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-layers"></use>
               </svg> Try CoreUI<strong>PRO</strong></a></li> --}}
         </ul>
-        <button class="c-sidebar-minimizer c-class-toggler" type="button" data-target="_parent" data-class="c-sidebar-minimized"></button>
+        
+        <button class="c-sidebar-minimizer c-class-toggler" type="button" data-target="_parent" data-class="c-sidebar-minimized">
+          
+        </button>
+      
       </div>
     {{-- @endif --}}
     <div class="c-wrapper c-fixed-components">
@@ -271,6 +327,22 @@
                           </ul>
         <ul class="c-header-nav ml-auto mr-4">
         <li class="c-header-nav-item d-md-down-none mx-2">
+
+          <li class="nav-item">
+            <a class="nav-link" href="/cart" > 
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="24px" height="24px"><path d="M0 0h24v24H0zm18.31 6l-2.76 5z" fill="none"/>
+              <path d="M11 9h2V6h3V4h-3V1h-2v3H8v2h3v3zm-4 9c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2zm-9.83-3.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.86-7.01L19.42 4h-.01l-1.1 2-2.76 5H8.53l-.13-.27L6.16 6l-.95-2-.94-2H1v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.13 0-.25-.11-.25-.25z"/>
+              </svg>
+              <span id="addcart" class= "badge badge-pill badge-secondary"style="position: absolute;top:0.2rem;right:9rem; background-color:blue"></span>
+    
+            </a>
+          </li>
+         
+
+
+
+
+
           <li class="c-header-nav-item dropdown">
             <a class="c-header-nav-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 
@@ -338,32 +410,30 @@
           <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
           
           Lock Account</a>
-          <a class="dropdown-item" href="/logout">
+          {{-- <a class="dropdown-item" href="/logout">
           {{-- <svg class="c-icon mr-2">
           <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-account-logout"></use>
-          </svg>  --}}
-          <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/></svg>
+          </svg>  
+          </a> --}}
+          {{-- <a class="dropdown-item" href="{{ route('logout') }}"
+            onclick="event.preventDefault();
+                          document.getElementById('logout-form').submit();">
+              {{ __('Logout') }}
+              <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/></svg>
 
-          Logout</a>
+              Logout  
+              
+          </a>
+
+          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+              @csrf
+          </form> --}}
+
+
+
           </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            
         </a>
-          </li>
+        </li>
         </li>
         {{-- <li class="c-header-nav-item d-md-down-none mx-2"><a class="c-header-nav-link" href="#">
         <svg class="c-icon">
@@ -375,7 +445,7 @@
         </svg></a></li> --}}
         <li class="c-header-nav-item dropdown show">
           <a class="c-header-nav-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-          <div class="c-avatar"><img class="c-avatar-img" href="#dropdown" src="assets/img/avatars/6.jpg" alt="user@email.com"></div>
+          <div class="c-avatar" ><img class="c-avatar-img" href="#dropdown" src={{asset('image/'.Auth::user()->image)}} alt="user@email.com" style="border-radius:50%;width:38px;height:38px"></div>
           </a>
           <div  id="dropdown" class="dropdown-menu dropdown-menu-right pt-0 ">
           <div class="dropdown-header bg-light py-2"><strong>Account</strong></div>
@@ -431,13 +501,28 @@
           <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
           
           Lock Account</a>
-          <a class="dropdown-item" href="/logout">
+          {{-- <a class="dropdown-item" href="/logout">
           {{-- <svg class="c-icon mr-2">
           <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-account-logout"></use>
           </svg>  --}}
-          <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/></svg>
+          {{-- <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/></svg> --}}
 
-          Logout</a>
+          {{-- Logout</a> --}}
+          <a class="dropdown-item" href="{{ route('logout') }}"
+          onclick="event.preventDefault();
+            document.getElementById('logout-form').submit();">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/></svg>
+            {{ __('Logout') }}
+            
+             
+            
+        </a>
+
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
+        </form>
+
+
           </div>
         </li>
         </ul>
@@ -451,15 +536,17 @@
         </ol>
         </div>
         </header>
-        @endif
+      @endif
       <main class="c-main">
         <div class="container-fluid">
           <div class="fade-in">
+         
           @yield('content')
           </div>
         </div>
       </main>
     </div>
+  </div>
     <!-- CoreUI and necessary plugins-->
     <script src="{{asset('assets/js/coreui.bundle.min.js')}}"></script>
     <!--[if IE]><!-->
@@ -469,6 +556,7 @@
     <script src="{{asset('assets/js/bundle.js')}}"></script>
     <script src="{{asset('assets/js/utils.js')}}"></script>
     <script src="{{asset('assets/js/main.js')}}"></script>
-    
+    <script src="{{ asset('js/app.js') }}" defer></script>
+
   </body>
 </html>

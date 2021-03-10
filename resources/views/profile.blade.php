@@ -22,12 +22,13 @@
 @section('content')
 <div class="card">
     <div class="card-header">
-    <strong>User Information</strong>
-    
+    <strong>User Information ({{Auth::user()->role->role}})</strong>
+    {{-- <example-component></example-component> --}}
+    <my-component></my-component>
     </div>
     <div class="card-body">
     <div class="form-group">
-        <div><b>Name:</b> {{$user['name']}}</div>
+        <div><b>Name:</b> {{$user['name']}} </div>
         {{-- <input type="text" class="form-control" id="company" placeholder="Enter your company name"> --}}
         {{-- <div style="border:1px;border-style:solid;border-radius:3px;padding:2px 5px ">{{$user['name']}}</div> --}}
         

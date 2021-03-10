@@ -6,7 +6,7 @@
     <div class="c-body">
       <main class="c-main">
         <div class="col-xl-8 order-xl-1">
-            <div class="card bg-secondary shadow" style="float:right;position: relative;top: -80%;">
+            <div class="card bg-secondary shadow" style="float:right;position: relative;top: -80%;width: 64rem;left: 23rem;right: 11rem;">
               <div class="card-header bg-white border-0">
                 <div class="row align-items-center">
                   <div class="col-8">
@@ -18,11 +18,11 @@
                   </div> --}}
               <form action="/update" method="POST" enctype="multipart/form-data"> 
                 @csrf 
-                  <div class="form-row-last">
+                  {{-- <div class="form-row-last">
                     <input type="submit" name="action" class="register" value="update">
                     <input type="submit" name="action" class="register" value="cancel"  style="text-align:center;">
-                    {{-- <button type="submit" name="register" class="register" style="padding:14px">Cancel</button>  --}}
-                </div>
+                    
+                  </div> --}}
                   
                 </div>
               </div>
@@ -56,7 +56,7 @@
                       <div class="col-lg-6">
                         <div class="form-group focused">
                           <label class="form-control-label" for="input-last-name">Gender</label>
-                          <input type="text" id="input-last-name" class="form-control form-control-alternative" placeholder="Last name" name="Gender" value="{{$user['Gender']}}">
+                          <input type="text" id="input-last-name" class="form-control form-control-alternative" placeholder="Gender" name="Gender" value="{{$user['Gender']}}">
                         </div>
                       </div>
                     </div>
@@ -118,6 +118,15 @@
                     </div>
                   </div> -->
                 
+              </div>
+              <div class="card-footer bg-white border-0 " style="padding:0.75rem 1.25rem;margin: 0rem -1.25rem -1.25rem -1.25rem;">
+                  <div class="row align-items-center">
+                    <div class="form-row-last offset-5">
+                      <button class="btn btn-primary mr-2" type="submit" name="action" class="register" value="update">update</button>
+                      <button class="btn btn-primary" type="submit" name="action" class="register" value="cancel"  style="text-align:center;">cancel</button>
+                      {{-- <button type="submit" name="register" class="register" style="padding:14px">Cancel</button>  --}}
+                    </div>
+                  </div>                  
               </div>
             </div>
           </div>

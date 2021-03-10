@@ -14,7 +14,7 @@
       @foreach($item as $items)
       <tr>
         
-        <td>{{$items['id']}}</td>
+        <td>{{$loop->iteration}}</td>
         <td>{{$items['item']}}</td>
         <td>{{$items['price']}}</td>
         <td><img src="{{asset('image/'.$items['image'] )}}" width="100"></td>

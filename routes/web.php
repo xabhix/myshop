@@ -11,15 +11,18 @@ use App\item;
 |
 */
 
-// Route::get('/{latest?}', function () {
-//     $item=item::select('*')->with('category')->get();
-//     return view('showitem',compact('item'));
+// Route::get('/', function () {
+    
+//     return view('welcome');
 // });
 
 Auth::routes();
-Route::get('/{latest?}','ItemController@index');
-Route::get('/{recentitem}','ItemController@FilterLatest');
-Route::get('cartitem/{id}/{item}','ItemController@addcart');
+Route::get('/cart','OrderController@cartitems')->name('cart');
+Route::get('/','ItemController@index');
+Route::get('/cartitem/{id}/{item}','ItemController@addcart');
+// Route::get('/{item?}/{price?}/{category?}','ItemController@index');
+
+
 Route::post('/itemcategoryadd','CategoryController@addcategory');
 Route::get('profile/itemcategory','CategoryController@itemcategory');
 Route::get('profile/itemdelete/{id}','ItemController@deleteitem');
@@ -33,4 +36,12 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/profile', 'HomeController@profile')->name('profile');
 Route::post('/update', 'HomeController@update')->name('update');
 Route::get('profile/edit/{id}','HomeController@edit');
-Route::get('/logout','HomeController@logout')->name('logout');
+Route::get('/order/{id?}/{item?}','OrderController@index')->name('order');
+Route::get('/orderaction','OrderController@order');
+Route::get('/ordereditems/{user_id?}','OrderController@ShowOrderedItem');
+Route::get('/orderstatus','OrderController@orderstatus');
+Route::post('/status','OrderController@StatusOfOrder');
+// Route::get('/{item?}/{price?}/{category?}','ItemController@index');
+Route::get('/vue', function(){
+    return view('vue');
+});

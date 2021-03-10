@@ -13,5 +13,8 @@ class item extends Model
     public function category(){
         return $this->hasOne('App\category','id','category_id');
     }
+    public function placed_order(){
+        return $this->belongsTo('App\item');
+    }
 
 }
