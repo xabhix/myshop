@@ -24,7 +24,7 @@
     <div class="card-header">
     <strong>User Information ({{Auth::user()->role->role}})</strong>
     {{-- <example-component></example-component> --}}
-    <my-component></my-component>
+    {{-- <my-component></my-component> --}}
     </div>
     <div class="card-body">
     <div class="form-group">

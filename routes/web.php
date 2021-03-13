@@ -42,6 +42,12 @@ Route::get('/ordereditems/{user_id?}','OrderController@ShowOrderedItem');
 Route::get('/orderstatus','OrderController@orderstatus');
 Route::post('/status','OrderController@StatusOfOrder');
 // Route::get('/{item?}/{price?}/{category?}','ItemController@index');
-Route::get('/vue', function(){
-    return view('vue');
-});
+
+Route::get('/testvue','ItemController@additemformVue');
+Route::post('/add-item-vue','ItemController@storeItemVue');
+//Route::get('/fetch-categories','CategoryController@fetchCategories');
+Route::get('/fetch-item-vue','ItemController@datafetch');
+Route::resource('delete-item-vue','ItemController');
+Route::resource('update-item-vue','ItemController');
+    
+

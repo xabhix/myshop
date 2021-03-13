@@ -17,4 +17,11 @@ class CategoryController extends Controller
     public function itemcategory(){
         return view('itemcategory');
     } 
+
+    public function fetchCategories(){
+        $categories = category::all();
+        return response()->json($categories);
+    } 
+
+
 }

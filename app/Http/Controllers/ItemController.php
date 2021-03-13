@@ -14,19 +14,14 @@ class ItemController extends Controller
 
         
     public function index(Request $request,$itemstatus=null,$price=null,$catgory=null){
+        
         $category=category::get();
-        //$path=$request->url();
+        
         
         $itemstatus=$request->itemstatus;
         $price=$request->price;
         $catgory=$request->category;
-        // if($path==url('http://localhost/cartitem/{id}/{item}')){
-        //     dd('1');
-        //     $item=item::with('category')->get();
-        //     return view('showitem',compact('item','category'));
-        // }
         
-        //dd($itemstatus);
 //---------------------------------------- filter apply here---------------------------------------------------
         if($itemstatus || $price || $catgory){
             //dd($catgory);
@@ -113,8 +108,9 @@ class ItemController extends Controller
 
            
         }else{
-            //dd('3');
+           
             $item=item::with('category')->get();
+            
         };
 
 //--------------------------------------filter end here--------------------------------------------------------------------------   
@@ -123,7 +119,7 @@ class ItemController extends Controller
         //dd($placed_item);
         $item=item::with('category')->get();
         
-        
+        //dd($item);
         return view('showitem',compact('item','category','placed_item'));
     }
     //
@@ -183,14 +179,10 @@ class ItemController extends Controller
         $item->is_active=1;
       
         $item->save();
-    //    $items=item::where('item',$item->item)->first();
-    //    dd($items);
-    //    $items=$request->session()->put('item',$item);
-    //    dd($items);
-    //return redirect()->back();
-    $item=item::all();
-    $request->session()->put('item',$item);
-    return redirect('profile/itemtable');   
+   
+        $item=item::all();
+        $request->session()->put('item',$item);
+        return redirect('profile/itemtable');   
     }
 
     function edit_item($id){
@@ -234,25 +226,51 @@ class ItemController extends Controller
            return redirect('profile/itemtable');
     }
 
-    // public function showitem(Request $request){
-    //     //$category = category::all();
-    //     dd('test');
-    //     $item=item::select('*')->with('category')->get();
-    //     //dd($item);
-    //     return view('showitem',compact('item'));
-    //     //['item'=>$item]
-    // }
+    
+    public function additemformVue(){
+        return view('AdditemformVue');
+    }
 
+    public function storeItemVue(Request $request){
+        $data = $request->all();
+        
+        $item=new item();
+      
+        $item->item=$data['item'];
+        $item->price=$data['price'];
+        $item->category_id=1;
+        $item->owner=0;
+        $item->is_active=0;
+        $item->image="null";
+        $item->save();
 
-    // public function FilterLatest(Request $request){
-    //   // dd('1');
-    //    $item=item::orderBy('created_at','DESC')->take(10)->get();
-    //    //$recentitem=$request->query('item','latest');
-    //   // $itemsorted=$item->sortBy('created_at');
-    //   return view('latestitem',compact('item'));
-    //   //return view('latestitem')
-    //    //dd($item);
-    // }
-
+        
+        return response()->json($item);
+    }
+    public function datafetch(){
+        $data = item::orderBy('created_at','desc')->get();
+        //dd($data);
+        return response()->json($data);
+    }
+    public function destroy(Request $request, $id){
+          $data=item::find($id);      
+         // $data = $request->all();
+          //dd($data);
+          $data->delete();
+          return response()->json("ok");
+    }
+    public function update(Request $request,$id){
+                  
+           $item=item::find($id);
+           if($request->price){
+            $item->price=$request->price;
+           }
+           if($request->item){
+            $item->item=$request->item; 
+           }
+           $item->update();
+           //dd($data);
+           return  response()->json($item); 
+    }
 
 }

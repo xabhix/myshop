@@ -3,7 +3,7 @@
 flex-row align-items-center
 @endsection
 @section('content')
-<div class="container">
+<div class="container" style="margin-left:25%">
     <div class="row justify-content-center">
         <form method="POST" action="{{ route('login') }}">
             @csrf

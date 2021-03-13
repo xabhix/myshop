@@ -6,7 +6,9 @@
                 <input type="name" class="form-control mt-2" name="" v-model="name" id="">
                 <input type="email" class="form-control mt-2" name="" v-model="email" id="">
                 <input type="address" class="form-control mt-2" name="" v-model="address" id="">
-                </div>
+
+                <button class="btn btn-success" @click="addUser">Add</button>
+            </div>
             <div class="col-md-6">
                 <!-- {{email}} -->
                 <table class="table">
@@ -15,14 +17,13 @@
                         <th>Email</th>
                         <th>Address</th>
                     </tr>
-                    <tr>
-
+                    <tr v-for="user in users" :key="user.name">
+                        <td>{{user.name}}</td>
+                        <td>{{user.email}}</td>
+                        <td>{{user.address}}</td>
                     </tr>
                 </table>
             </div>
-        </div>
-        <div class="row">
-            <button class="btn btn-success">Add</button>
         </div>
         <div class="row mt-2">
             <div class="col-md-6">
@@ -42,11 +43,20 @@
                 initialValue : 0,
                 name:'',
                 address:'',
+                users: [],
+
             }
         },
         methods: {
             incrementor() {
                 this.initialValue ++;
+            },
+            addUser() {
+                let user = { 'email': this.email, 'name': this.name, 'address': this.address };
+                this.users.push(user);
+                this.email = '';
+                this.name = '';
+                this.address = '';
             }
         },
         computed:{

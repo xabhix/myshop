@@ -10,7 +10,7 @@ flex-row align-items-center
             <div class="card-body p-4">
                 <form method="POST" action="/itemadd" enctype="multipart/form-data">
                     @csrf
-                    <h1>Add Items</h1>
+                    <h1>Add Items </h1>
                     <p class="text-muted"></p>
                     <div class="input-group mb-3">
                         <div class="input-group-prepend"><span class="input-group-text">
@@ -120,7 +120,7 @@ flex-row align-items-center
                    
                     {{-- <button class="btn btn-block btn-success" type="button">Create Account</button> --}}
                     <button type="submit" class="btn btn-primary btn-block btn-success">
-                        {{ __('Register') }}
+                        {{ __('Add') }}
                     </button>
                     </div>
                     <div class="card-footer p-4">

@@ -11,7 +11,7 @@ flex-row align-items-center
                 <form method="POST" action="/updateitem" enctype="multipart/form-data">
                     @csrf
                     <input type='hidden' name='id' value="{{$item['id']}}">
-                    <h1>Edit Items</h1>
+                    <h1>Edit Items </h1>
                     <p class="text-muted"></p>
                     <div class="input-group mb-3">
                         <div class="input-group-prepend"><span class="input-group-text">

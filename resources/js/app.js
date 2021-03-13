@@ -21,7 +21,9 @@ window.Vue = require('vue');
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 // Vue.component('my-component', require('./components/myComponent.vue'));
+import testComponent from './components/testComponent.vue';
 import myComponent from './components/myComponent.vue';
+import AdditemformComponent from './components/AdditemformComponent.vue';
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -32,6 +34,7 @@ const app = new Vue({
     el: '#app',
     components:{
         myComponent,
-        
+        testComponent,
+        AdditemformComponent,
     }
 });

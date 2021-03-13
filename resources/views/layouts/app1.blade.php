@@ -65,7 +65,7 @@
     <link href="node_modules/@coreui/chartjs/dist/css/coreui-chartjs.css" rel="stylesheet">
   </head>
   <body class="c-app @yield('css')"> 
-    <div id="app">
+    
     @if(Auth::user())
       <div class="c-sidebar c-sidebar-dark c-sidebar-fixed c-sidebar-lg-show" id="sidebar">
         <div class="c-sidebar-brand d-lg-down-none">
@@ -297,7 +297,7 @@
       
       </div>
     {{-- @endif --}}
-    <div class="c-wrapper c-fixed-components">
+    <div class="c-wrapper c-fixed-components" id="app">
       <header class="c-header c-header-light c-header-fixed c-header-with-subheader">
           <button class="c-header-toggler c-class-toggler d-lg-none mfe-auto" type="button" data-target="#sidebar" data-class="c-sidebar-show">
               <svg class="c-icon c-icon-lg">
@@ -410,39 +410,8 @@
           <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
           
           Lock Account</a>
-          {{-- <a class="dropdown-item" href="/logout">
-          {{-- <svg class="c-icon mr-2">
-          <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-account-logout"></use>
-          </svg>  
-          </a> --}}
-          {{-- <a class="dropdown-item" href="{{ route('logout') }}"
-            onclick="event.preventDefault();
-                          document.getElementById('logout-form').submit();">
-              {{ __('Logout') }}
-              <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/></svg>
-
-              Logout  
-              
-          </a>
-
-          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-              @csrf
-          </form> --}}
-
-
-
-          </div>
-        </a>
-        </li>
-        </li>
-        {{-- <li class="c-header-nav-item d-md-down-none mx-2"><a class="c-header-nav-link" href="#">
-        <svg class="c-icon">
-        <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-list-rich"></use>
-        </svg></a></li>
-        <li class="c-header-nav-item d-md-down-none mx-2"><a class="c-header-nav-link" href="#">
-        <svg class="c-icon">
-        <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-envelope-open"></use>
-        </svg></a></li> --}}
+        
+        
         <li class="c-header-nav-item dropdown show">
           <a class="c-header-nav-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
           <div class="c-avatar" ><img class="c-avatar-img" href="#dropdown" src={{asset('image/'.Auth::user()->image)}} alt="user@email.com" style="border-radius:50%;width:38px;height:38px"></div>
@@ -457,18 +426,7 @@
             {{-- <title>Notification</title> --}}
             <path d="M21.106 16.339l-2.047-3.779v-3.935c0-3.929-3.196-7.125-7.125-7.125s-7.125 3.196-7.125 7.125v3.935l-2.047 3.779c-0.085 0.155-0.136 0.339-0.136 0.536 0 0.621 0.504 1.125 1.125 1.125h4.075c-0.011 0.124-0.017 0.249-0.017 0.375 0 2.278 1.847 4.125 4.125 4.125s4.125-1.847 4.125-4.125v0c0-0.126-0.006-0.251-0.017-0.375h4.075c0 0 0 0 0 0 0.621 0 1.125-0.504 1.125-1.125 0-0.196-0.050-0.381-0.139-0.542l0.003 0.006zM14.559 18.375c0 0.001 0 0.001 0 0.002 0 1.45-1.175 2.625-2.625 2.625s-2.625-1.175-2.625-2.625c0-0.133 0.010-0.264 0.029-0.392l-0.002 0.014h5.196c0.017 0.113 0.027 0.243 0.027 0.375v0zM4.381 16.5l1.928-3.56v-4.315c0-3.107 2.518-5.625 5.625-5.625s5.625 2.518 5.625 5.625v0 4.315l1.928 3.56z"></path>
             </svg>Updates<span class="badge badge-info ml-auto">42</span></a>
-          {{-- <a class="dropdown-item" href="#">
-          <svg class="c-icon mr-2">
-          <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-envelope-open"></use>
-          </svg> Messages<span class="badge badge-success ml-auto">42</span></a> --}}
-          {{-- <a class="dropdown-item" href="#">
-          <svg class="c-icon mr-2">
-          <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-task"></use>
-          </svg> Tasks<span class="badge badge-danger ml-auto">42</span></a> --}}
-          {{-- <a class="dropdown-item" href="#">
-          <svg class="c-icon mr-2">
-          <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-comment-square"></use>
-          </svg> Comments<span class="badge badge-warning ml-auto">42</span></a> --}}
+         
           <div class="dropdown-header bg-light py-2"><strong>Settings</strong></div>
           <a class="dropdown-item" href="/profile">
           {{-- <svg class="c-icon mr-2">
@@ -484,14 +442,7 @@
 
            
           <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24" viewBox="0 0 24 24" width="24"><g><path d="M0,0h24v24H0V0z" fill="none"/><path d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.07-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.74,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.8,11.69,4.8,12s0.02,0.64,0.07,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.44-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.47-0.12-0.61L19.14,12.94z M12,15.6c-1.98,0-3.6-1.62-3.6-3.6 s1.62-3.6,3.6-3.6s3.6,1.62,3.6,3.6S13.98,15.6,12,15.6z"/></g></svg>Settings</a>
-          {{-- <a class="dropdown-item" href="#">
-          <svg class="c-icon mr-2">
-          <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-credit-card"></use>
-          </svg> Payments<span class="badge badge-secondary ml-auto">42</span></a> --}}
-          {{-- <a class="dropdown-item" href="#">
-          <svg class="c-icon mr-2">
-          <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-file"></use>
-          </svg> Projects<span class="badge badge-primary ml-auto">42</span></a> --}}
+         
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">
           {{-- <svg class="c-icon mr-2">
@@ -546,7 +497,7 @@
         </div>
       </main>
     </div>
-  </div>
+  {{-- </div> --}}
     <!-- CoreUI and necessary plugins-->
     <script src="{{asset('assets/js/coreui.bundle.min.js')}}"></script>
     <!--[if IE]><!-->

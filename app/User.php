@@ -18,7 +18,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name', 'email', 'password','image','Gender','Address',
     ];
-
+    // public $primarykey 
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -36,6 +36,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public static function boot()
+    {
+        parent::boot();
+        self::creating(function ($model) {
+            $model->uuid = (string) Uuid::generate(4);
+        });
+    }
 
     public function roleuser(){
         return $this->belongsTo('App\roleuser');
