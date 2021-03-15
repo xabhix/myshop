@@ -17,12 +17,9 @@ flex-row align-items-center
                         <svg class="c-icon">
                         <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-user"></use>
                         </svg></span></div>
-                    {{-- <input class="form-control" type="text" placeholder="Username">  --}}
-                    
-                        {{-- <label for="name">{{ __('Name') }}</label> --}}
-
+                   
                         
-                            <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" placeholder="Username" autofocus>
+                        <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" placeholder="Username" autofocus>
 
                             @error('name')
                                 <span class="invalid-feedback" role="alert">
@@ -53,7 +50,7 @@ flex-row align-items-center
                             <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-envelope-open"></use>
                             </svg></span></div>
                             {{-- <input class="form-control" type="text" placeholder="Email"> --}}
-                            <input id="email" type="text" class="form-control @error('Address') is-invalid @enderror" name="Address" value="{{ old('Address') }}" placeholder="Address" required>
+                            <input id="text" type="text" class="form-control @error('Address') is-invalid @enderror" name="Address" value="{{ old('Address') }}" placeholder="Address" required>
 
                             @error('Address')
                                 <span class="invalid-feedback" role="alert">
@@ -71,7 +68,7 @@ flex-row align-items-center
                             </svg></span></div>
                             {{-- <input class="form-control" type="text" placeholder="Email"> --}}
                             <select id="Gender" class="form-control"  name="Gender" placeholder="Gender">
-                                <option value="Male">Male</option>
+                                <option value="Male" selected>Male</option>
                                 <option value="Female">Female</option>
                             </select>
 
@@ -96,7 +93,7 @@ flex-row align-items-center
                                 @endforeach   
                             </select>
 
-                            @error('Gender')
+                            @error('role')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -105,25 +102,7 @@ flex-row align-items-center
 
                     </div>
 
-                    {{-- <div class="input-group mb-3">
-                        <div class="input-group-prepend"><span class="input-group-text">
-                            <svg class="c-icon">
-                            <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-envelope-open"></use>
-                            </svg></span></div>
-                            {{-- <input class="form-control" type="text" placeholder="Email"> --}}
-                            {{-- <select id="Role" class="form-control"  name="role">
-                                @foreach($users as $user)	
-                                <option value="{{$user->role}}">{{$user->role}}</option>
-                                @endforeach
-                            </select>
-                            @error('role')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror --}}
-
-
-                    {{-- </div> --}} 
+                    
 
                     <div class="input-group mb-3">
                         <div class="input-group-prepend"><span class="input-group-text">
@@ -131,8 +110,6 @@ flex-row align-items-center
                             <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-envelope-open"></use>
                             
                         </svg>  <input type="file" name="image" id="image" placholder="Your image" required></span>
-                            {{-- <input class="form-control" type="text" placeholder="Email"> --}}
-                            {{-- <input type="file" name="image" id="image" placholder="Your image" required> --}}
                         </div>
                             @error('image')
                                 <span class="invalid-feedback" role="alert">
@@ -154,7 +131,7 @@ flex-row align-items-center
                             <svg class="c-icon">
                             <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-lock-locked"></use>
                             </svg></span></div>
-                            {{-- <input class="form-control" type="password" placeholder="Password"> --}}
+                           
 
                             <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Password" required autocomplete="new-password">
 

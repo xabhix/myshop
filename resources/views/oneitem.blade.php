@@ -5,7 +5,7 @@
   
   img{
     width:400px;
-    height: 400px;
+    height: 250px;
     object-fit: cover;
   }
 
@@ -30,6 +30,7 @@
 .custom {
     width: 78px !important;
     text-align: center;
+    margin-left:16px;
 }
 </style>
 @endsection
@@ -66,29 +67,28 @@
     
     </nav>
 </div>  
-<div class="container"> 
-  <div class="form-group img"><img src="{{asset('image/'.$cart['image'])}}"></div>
-  <div class="form-group row">
-    <div class="col-xl-2">Name: {{$cart['item']}}</div>
-    <div class="col-xl-3">Category: {{$cart->category->name}}</div>
-  </div>
-  <div class="form-group">Price:{{$cart['price']}}</div>
-  <div class="form-group row">
-  <a href="" target="_blank" class="btn btn-primary custom " onclick="addcart({{$cart['id']}})">Cart</a>
-  <a href="{{(Auth::user())? url('order/'.$cart['id'].'/'.$cart['item']):url('login')}}" target="_blank" class="btn btn-success custom" style="margin-left:228px;">Buy</a>
-  </div>
+<div class="container">
+  
+        
+          
+            <div class="form-group img"><img src="{{asset('image/'.$cart['image'])}}"></div>
+            <div class="form-group row">
+              <div class="col-xl-2" style="margin-left:-1px">Name: {{$cart['item']}}</div>
+              <div class="col-xl-3" style="margin-left:18px">Category: {{$cart->category->name}}</div>
+            </div>
+            <div class="form-group">Price:{{$cart['price']}}</div>
+            <div class="form-group row">
+            <a href="" target="_blank" class="btn btn-primary custom "  onclick="addcart({{$cart['id']}})">Cart</a>
+            <a href="{{(Auth::user())? url('order/'.$cart['id'].'/'.$cart['item']):url('login')}}" target="_blank" class="btn btn-success custom" style="margin-left:248px;">Buy</a>
+            </div>
+        
+        
 </div> 
 
 
 <script>
   var a = "{{$cart}}"
-  // var count = [];
-  // localStorage.setItem('items',count);
-  // count.push(JSON.parse(localStorage.getItem('items')));
-  // localStorage.setItem('items',JSON.stringify(count));
-  // cartNumber=localStorage.getItem("items")
-  // document.querySelector('.badge').textContent=cartNumber;
-  //{{$cart['id']}}
+  
   function setCookie(name,value,days) {
    var expires = "";
    if (days) {

@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-
+use Webpatser\Uuid\Uuid;
 class User extends Authenticatable
 {
     use Notifiable;
@@ -15,6 +15,8 @@ class User extends Authenticatable
      *
      * @var array
      */
+    public $primarykey = 'id';
+    public $incrementing = false;
     protected $fillable = [
         'name', 'email', 'password','image','Gender','Address',
     ];
@@ -37,12 +39,23 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    // public static function boot()
+    // {
+    //     parent::boot();
+    //     self::creating(function ($model) {
+    //         $model->uuid = (string) Uuid::generate(4);
+    //     });
+    // }
     public static function boot()
     {
-        parent::boot();
-        self::creating(function ($model) {
-            $model->uuid = (string) Uuid::generate(4);
-        });
+         parent::boot();
+         self::creating(function($model){
+             $model->id = self::generateUuid();
+         });
+    }
+    public static function generateUuid()
+    {
+         return Uuid::generate();
     }
 
     public function roleuser(){

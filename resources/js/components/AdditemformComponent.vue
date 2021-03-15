@@ -41,7 +41,7 @@
                             </td>
 
                             <td v-on:dblclick="EditedPrice(data.price,index) in olddata" class="price" style="cursor: pointer"><span v-if="!isStartEditing">{{data.price}}</span>
-                            <input type="price" v-if="isStartEditing && selectedItem==index" v-model="priceToUpdate" v-on:keyup.enter="updatePricefield(data.id ,index)" class="pricevalue form-control">
+                            <input type="price" v-if="isStartEditing && selectedItemprice==index" v-model="priceToUpdate" v-on:keyup.enter="updatePricefield(data.id ,index)" class="pricevalue form-control">
                             <span v-else><span v-if="isStartEditing">{{data.price}}</span></span>
                             </td>
                             
@@ -101,6 +101,7 @@ export default {
             isStartitemEditing: false,
             selectedItem : '',
             itemToupdate:'',
+            selectedItemprice : '',
         }
     },
     computed: {
@@ -170,7 +171,7 @@ export default {
         },
         
         EditedPrice(price,index){
-            this.selectedItem = index;
+            this.selectedItemprice = index;
             this.isStartEditing = true;
             this.priceToUpdate = price;
             //this.PriceforItem=price;

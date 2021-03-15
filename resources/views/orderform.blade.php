@@ -74,7 +74,7 @@
               <option>Jaipur</option>
               <option>New Delhi</option>
             </select> --}}
-            <select  class="select2 form-control" name="city" style="margin-top:29px">
+            <select  class="select2 form-control" name="city" style="margin-top:-2px">
               <option>Your City</option>
               <option value="AL">Jaipur</option>
               <option value="Am">Kota</option>

@@ -1,6 +1,11 @@
 @extends('layouts.app1')
 @section('cssforitem')
 <style>
+ /* .container{
+    display: grid;  
+    grid-template-columns: 100px 100px 100px;  
+    grid-template-rows: 50px 50px;  
+ }  */
   .card-img-top {
     width: 100%;
     height: 10vw;
@@ -29,6 +34,7 @@
 
 @endsection
 @section('content')
+<div class="container">
 @if(!Auth::user())
   <nav class="nav navbar-default navbar-fixed-top bg-secondary ">
     
@@ -171,6 +177,7 @@
     
 </div> 
 @endif
+</div>
 <script>
 
 var cartnumber=parseInt(localStorage.getItem('items'));

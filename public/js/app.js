@@ -2009,7 +2009,8 @@ __webpack_require__.r(__webpack_exports__);
       isStartEditing: false,
       isStartitemEditing: false,
       selectedItem: '',
-      itemToupdate: ''
+      itemToupdate: '',
+      selectedItemprice: ''
     };
   },
   computed: {},
@@ -2062,7 +2063,7 @@ __webpack_require__.r(__webpack_exports__);
       console.log(this.selectedItem);
     },
     EditedPrice: function EditedPrice(price, index) {
-      this.selectedItem = index;
+      this.selectedItemprice = index;
       this.isStartEditing = true;
       this.priceToUpdate = price; //this.PriceforItem=price;
 
@@ -38078,7 +38079,7 @@ var render = function() {
                         ? _c("span", [_vm._v(_vm._s(data.price))])
                         : _vm._e(),
                       _vm._v(" "),
-                      _vm.isStartEditing && _vm.selectedItem == index
+                      _vm.isStartEditing && _vm.selectedItemprice == index
                         ? _c("input", {
                             directives: [
                               {

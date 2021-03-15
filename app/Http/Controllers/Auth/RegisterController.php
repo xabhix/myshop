@@ -54,7 +54,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'image' => ['required','image','mimes:jpg,jpeg'],
+            'image' => ['required','image','mimes:jpg,jpeg,png'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'Gender'=>['required','string'],
         ]);
@@ -75,10 +75,13 @@ class RegisterController extends Controller
               
 
         $request = request();
-        
+        if($request->hasfile('image')){
         $imageName=time().'.'.$data['image']->extension();
         $data['image']=$request->image->move(public_path('image'),$imageName);
-        
+        }else{
+        $imageName=time().'.'.$data['image']->extension();
+        $data['image']=public_path('image/user.png');
+        }
         if($request->role=='super Admin'){
             $role=Role::where('role',$request->role)->first();
             $role_id= $role->id;
