@@ -67,7 +67,7 @@ flex-row align-items-center
                             <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-envelope-open"></use>
                             </svg></span></div>
                             {{-- <input class="form-control" type="text" placeholder="Email"> --}}
-                            <select id="Gender" class="form-control"  name="Gender" placeholder="Gender">
+                            <select id="Gender" class="form-control  @error('Gender') is-invalid @enderror"  name="Gender" placeholder="Gender">
                                 <option value="Male" selected>Male</option>
                                 <option value="Female">Female</option>
                             </select>
@@ -105,12 +105,18 @@ flex-row align-items-center
                     
 
                     <div class="input-group mb-3">
-                        <div class="input-group-prepend"><span class="input-group-text">
-                            <svg class="c-icon">
-                            <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-envelope-open"></use>
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                {{-- <svg class="c-icon">
+                                <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-envelope-open"></use>
+                                
+                            </svg> --}}
                             
-                        </svg>  <input type="file" name="image" id="image" placholder="Your image" required></span>
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="18">
+                            <path d="M0 0h24v24H0z" fill="none"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>
+                            </span>
                         </div>
+                        <input type="file" name="image" id="image" class="form-control @error('image') is-invalid @enderror" placholder="Your image" required>   
                             @error('image')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>

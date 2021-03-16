@@ -18,6 +18,10 @@
                                     <!-- <select class="form-control" v-model="category_id">
                                         <option v-for="category in categories" :key="category.id">{{category.name}}</option>
                                     </select> -->
+                                   
+                                    <!-- <input type='file' class="custom-file-input" name=""> -->
+                                    <input type="file" class="custom-file-input" id="customFile" v-on: change=" handleFileObject()">
+                                    <label class="custom-file-label" for="customFile">Choose Image</label>
                                 </div>
                             <button class="btn btn-primary offset-5" @click="itemadd">Add</button>    
                             
@@ -44,16 +48,15 @@
                             <input type="price" v-if="isStartEditing && selectedItemprice==index" v-model="priceToUpdate" v-on:keyup.enter="updatePricefield(data.id ,index)" class="pricevalue form-control">
                             <span v-else><span v-if="isStartEditing">{{data.price}}</span></span>
                             </td>
-                            
+                            <td><img :src="'/image/'+data.image" style="width:100px;heigth:100px" ref="file"></td>
                             <td><button class="btn btn-primary" @click="itemdelete(data.id,index) in olddata">Delete</button></td>
                             <td><button class="btn btn-primary" @click="edititem(data,index) in olddata">Edit</button></td>
-                            <!-- <button class="btn btn-primary" @click="deleteitem">Delete</button> -->
-                            <!-- <td>{{additem.category}}</td> -->
+                            
                         </tr>
                     </table>
                 </div>
             </div>
-            <div class="row">
+            <!-- <div class="row">
                 <div class="col-md-6" style="top:-79.25rem">
                     <div class="card mx-4">
                         <div class="card-body p-4">
@@ -71,7 +74,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </template>
@@ -102,6 +105,8 @@ export default {
             selectedItem : '',
             itemToupdate:'',
             selectedItemprice : '',
+            avatar: null,
+            avatarName: null,
         }
     },
     computed: {
@@ -204,7 +209,10 @@ export default {
         },
         
     },
-    
+    // handleFileObject() {
+    //     this.avatar = this.$refs.file.files[0]
+    //     this.avatarName = this.avatar.name
+    // },
     
     mounted() {
         this.dataforvue();

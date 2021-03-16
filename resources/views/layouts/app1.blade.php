@@ -37,18 +37,20 @@
     <!-- Main styles for this application-->
     <link href="{{asset('assets/css/style.css')}}" rel="stylesheet">
     <link href="{{asset('assets/css/select2.min.css')}}" rel="stylesheet" />
+    {{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css" rel="stylesheet"/> --}}
     <!-------script of order form-------------------------->
     @yield('cssforitem')
-    @yield('scriptfororderform')
+    
     <!--for shop item -->
     {{-- @if(!Auth::user()) --}}
       @yield('cssforitem')
     
       @yield('script')
     {{-- @endif --}}
-    <script type="text/javascript" src="{{asset('assets/js/jquery.js')}}"></script>
+    {{-- <script type="text/javascript" src="{{asset('assets/js/jquery.js')}}"></script> --}}
     {{-- <script type="text/javascript" src="{{asset('assets/js/addcart.js')}}"></script> --}}
-    <script>
+    
+    {{-- <script>
       $(document).ready(function(){
        
          $('#addcart').text(JSON.parse(localStorage.getItem('items')).length);
@@ -56,7 +58,7 @@
       })
          
   
-    </script>
+    </script> --}}
     <!-- Global site tag (gtag.js) - Google Analytics-->
     <script async src="{{asset('assets/js/sky.js')}}"></script>
 
@@ -346,9 +348,7 @@
           <li class="c-header-nav-item dropdown">
             <a class="c-header-nav-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 
-{{-- <a class="c-header-nav-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                <div class="c-avatar"><img class="c-avatar-img" href="#dropdown" src="assets/img/avatars/6.jpg" alt="user@email.com"></div>
-                </a> --}}
+
         
             <svg href="#" version="1.1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
             {{-- <title>Notification</title> --}}
@@ -507,7 +507,9 @@
     <script src="{{asset('assets/js/bundle.js')}}"></script>
     <script src="{{asset('assets/js/utils.js')}}"></script>
     <script src="{{asset('assets/js/main.js')}}"></script>
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    {{-- <script src="{{asset('js/app.js') }}" defer></script> --}}
+    @yield('scriptforvue')
+    @yield('scriptfororderform')
 
   </body>
 </html>

@@ -1985,6 +1985,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2010,7 +2013,9 @@ __webpack_require__.r(__webpack_exports__);
       isStartitemEditing: false,
       selectedItem: '',
       itemToupdate: '',
-      selectedItemprice: ''
+      selectedItemprice: '',
+      avatar: null,
+      avatarName: null
     };
   },
   computed: {},
@@ -2095,6 +2100,10 @@ __webpack_require__.r(__webpack_exports__);
       });
     }
   },
+  // handleFileObject() {
+  //     this.avatar = this.$refs.file.files[0]
+  //     this.avatarName = this.avatar.name
+  // },
   mounted: function mounted() {
     this.dataforvue();
   }
@@ -37979,7 +37988,26 @@ var render = function() {
                 })
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "input-group mb-3" }),
+              _c("div", { staticClass: "input-group mb-3" }, [
+                _c("input", {
+                  staticClass: "custom-file-input",
+                  attrs: {
+                    type: "file",
+                    id: "customFile",
+                    change: " handleFileObject()"
+                  },
+                  on: { "": function($event) {} }
+                }),
+                _vm._v(" "),
+                _c(
+                  "label",
+                  {
+                    staticClass: "custom-file-label",
+                    attrs: { for: "customFile" }
+                  },
+                  [_vm._v("Choose Image")]
+                )
+              ]),
               _vm._v(" "),
               _c(
                 "button",
@@ -38125,6 +38153,15 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("td", [
+                    _c("img", {
+                      ref: "file",
+                      refInFor: true,
+                      staticStyle: { width: "100px", heigth: "100px" },
+                      attrs: { src: "/image/" + data.image }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
                     _c(
                       "button",
                       {
@@ -38159,82 +38196,6 @@ var render = function() {
             2
           )
         ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row" }, [
-        _c(
-          "div",
-          { staticClass: "col-md-6", staticStyle: { top: "-79.25rem" } },
-          [
-            _c("div", { staticClass: "card mx-4" }, [
-              _c("div", { staticClass: "card-body p-4" }, [
-                _c("h1", [_vm._v("update Item")]),
-                _vm._v(" "),
-                _c("p", { domProps: { textContent: _vm._s(_vm.message) } }),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "input-group mb-3", attrs: { id: "demo1" } },
-                  [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.ItemforUpdate,
-                          expression: "ItemforUpdate"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      attrs: { type: "item", name: "", placeholder: "Name" },
-                      domProps: { value: _vm.ItemforUpdate },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.ItemforUpdate = $event.target.value
-                        }
-                      }
-                    })
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "input-group mb-3", attrs: { id: "demo2" } },
-                  [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.ItemPrice,
-                          expression: "ItemPrice"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      attrs: { type: "price", name: "", placeholder: "Price" },
-                      domProps: { value: _vm.ItemPrice },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.ItemPrice = $event.target.value
-                        }
-                      }
-                    })
-                  ]
-                ),
-                _vm._v(" "),
-                _c("button", { staticClass: "btn btn-primary offset-5" }, [
-                  _vm._v("Update")
-                ])
-              ])
-            ])
-          ]
-        )
       ])
     ])
   ])

@@ -1,22 +1,5 @@
 @extends('layouts.app1')
-@section('scriptfororderform')
-      <script type="text/javascript" src="{{asset('assets/js/jquery.js')}}"></script>
-      <script type="text/javascript" src="{{asset('assets/js/jquery.inputmask.js')}}"></script>
-      <script type="text/javascript" src="{{asset('assets/js/select2.min.js')}}"></script>
-      
-      <script type="text/javascript">
-        
-        $(document).ready(function($){
-          $("#postal-code").inputmask({"mask":"999999","placeholder":"XXXXX"});
-        });
-      </script>
-      <script type="text/javascript">
-        $(document).ready(function() {
-            $('.select2').select2();
-        });
-      </script>
 
-@endsection
 @section('content')
 @if ($errors->any())
     <div class="alert alert-danger">
@@ -47,34 +30,18 @@
       <div class="form-group col-sm-4">
         {{-- <div><b>Name:</b> </div> --}}
         <label for="name">Mobile Number</label>
-        <input type="tel" class="form-control" id="company" name="name" placeholder="Your Number" > 
+        <input type="tel" class="form-control" id="Mobile-Number" name="name" placeholder="Your Number" > 
         {{-- <div style="border:1px;border-style:solid;border-radius:3px;padding:2px 5px "></div>  --}}
         
       </div>
     </div> 
 
-    {{-- <div class="form-group">
-        {{-- <div><b>Name:</b> </div> --}}
-        {{-- <label for="number">Phone Number</label>
-        <input type="tel" class="form-control" id="company" name="number" placeholder=" your number" value="">  --}}
-        {{-- <div style="border:1px;border-style:solid;border-radius:3px;padding:2px 5px "></div>  --}}
-        
-    {{-- </div>  --}}
     
 
     <div class="row">
         <div class="form-group col-sm-8" style="margin-top:31px">
-        {{-- <label for="city">City</label>
-        <input class="form-control" id="city" type="text" name="city" placeholder="Enter your city" required> --}}
-            
-            {{-- <select class="form-control serachbox" id="listBox1" name="city" style="margin-top:29px">
-             
-              <option selected="selected">Your City</option>
-              <option>Kota</option>
-              <option>Jaipur</option>
-              <option>New Delhi</option>
-            </select> --}}
-            <select  class="select2 form-control" name="city" style="margin-top:-2px">
+        
+            <select  class="select2 form-control"  name="city" style="margin-top:-2px">
               <option>Your City</option>
               <option value="AL">Jaipur</option>
               <option value="Am">Kota</option>
@@ -82,12 +49,6 @@
               <option value="Ak">Ajmer</option>
               <option value="WY">Mount Abu</option>
             </select>
-
-
-            
-
-        
-       
         </div>
        
   
@@ -151,4 +112,35 @@
 
 </form>
 
- @endsection   
+
+
+@endsection 
+@section('scriptfororderform')
+    
+    <script type="text/javascript" src="{{asset('assets/js/jquery.js')}}"></script>
+    <script type="text/javascript" src="{{asset('assets/js/select2.min.js')}}"></script>
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.full.min.js" type="text/javascript"></script> --}}
+    <script type="text/javascript" src="{{asset('assets/js/jquery.inputmask.js')}}"></script>
+    <script type="text/javascript">
+       
+      jQuery(document).ready(function() {
+          $(".select2").select2();
+      });
+    </script>
+    
+
+    <script type="text/javascript">
+      
+      $(document).ready(function($){
+        $("#postal-code").inputmask({"mask":"999999","placeholder":"XXXXX"});
+      });
+    </script>
+    <script type="text/javascript">
+      
+      $(document).ready(function($){
+        $("#Mobile-Number").inputmask({"mask":"+99-9999999999","placeholder":"+91-XXXXXXXXXX"});
+      });
+    </script>
+    
+
+@endsection

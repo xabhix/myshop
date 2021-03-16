@@ -50,7 +50,15 @@ class RegisterController extends Controller
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
-    {
+    {   $message = array(
+           'name.required' => "Please enter a valid name",
+           'email.required' => "Please enter a valid email",
+           'image.required' => "Please select a valid image",
+           'password.required' => "Please enter a valid password",
+           'Gender.required' => "Please enter your Gender",
+    );
+
+    
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
